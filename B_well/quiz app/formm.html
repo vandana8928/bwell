@@ -1,0 +1,147 @@
+<!DOCTYPE>
+ 
+<head>
+   <title>Simple login form</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+   <style>
+       html,
+       body {
+           display: flex;
+           justify-content: center;
+           font-family: Roboto, Arial, sans-serif;
+           font-size: 15px;
+       }
+ 
+       form {
+           border: 5px solid #f1f1f1;
+           position: relative;
+           left: 5%;
+           right: 50%;
+           top: 50%;
+           bottom: 50%;
+       }
+ 
+       input[type=text],
+       input[type=password] {
+           width: 100%;
+           padding: 16px 8px;
+           margin: 8px 0;
+           display: inline-block;
+           border: 1px solid #ccc;
+           box-sizing: border-box;
+       }
+ 
+       button {
+           background-color: #8ebf42;
+           color: white;
+           padding: 14px 0;
+           margin: 10px 0;
+           border: none;
+           cursor: pointer;
+           width: 100%;
+       }
+ 
+       h1 {
+           text-align: center;
+           font-size: 18;
+       }
+ 
+       button:hover {
+           opacity: 0.8;
+       }
+ 
+       .formcontainer {
+           text-align: left;
+           margin: 24px 50px 12px;
+       }
+ 
+       .container {
+           padding: 16px 0;
+           text-align: left;
+       }
+ 
+       span.psw {
+           float: right;
+           padding-top: 0;
+           padding-right: 15px;
+       }
+ 
+       /* Change styles for span on extra small screens */
+       @media screen and (max-width: 300px) {
+           span.psw {
+               display: block;
+               float: none;
+           }
+       }
+   </style>
+</head>
+ 
+ 
+<body>
+ 
+ 
+ 
+ 
+   <form>
+       <h1>Login Form</h1>
+       <div class="formcontainer">
+           <hr />
+           <div class="container">
+ 
+               <label for="uname"><strong>Username</strong></label>
+               <input type="text" placeholder="name" name="name" id="nameField" required />
+               <!-- <label for="psw"><strong>Password</strong></label>
+       <input type="password" placeholder="Enter Password" name="psw" required>
+     </div>-->
+               <button id='loginbutton'> Login </button>
+ 
+           </div>
+   </form>
+ 
+ 
+   <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+ 
+   <script>
+      
+       var firebaseConfig = {
+           apiKey: "AIzaSyB0MxIFmP8_wm1GgaDMq9kBidyoYZq125w",
+           authDomain: "stress-assessment.firebaseapp.com",
+           projectId: "stress-assessment",
+           storageBucket: "stress-assessment.appspot.com",
+           messagingSenderId: "476800797482",
+           appId: "1:476800797482:web:f0a3663a8c68b5d2672c53",
+           measurementId: "G-RJYLQYE4EH"
+       };
+      
+       firebase.initializeApp(firebaseConfig);
+       const db = firebase.firestore();
+       const writeData = async (e) => {
+           e.preventDefault();
+          
+           let name = document.getElementById("nameField").value;
+          
+           db.collection("user").add({
+               name,
+               created: firebase.firestore.Timestamp.now()
+           }).then((docu)=>window.location.href="/quiz app/index.html").catch((e)=>{
+               console.log(e)
+           });
+          
+ 
+       }
+ 
+       const loginbutton = document.getElementById('loginbutton')
+ 
+       loginbutton.addEventListener('click', writeData)
+ 
+   </script>
+ 
+</body>
+ 
+</html>
+ 
+

@@ -1,0 +1,61 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?447d2d1ab22c54b30a3938b9f18b7a79") format("truetype"),
+url("./flaticon.woff?447d2d1ab22c54b30a3938b9f18b7a79") format("woff"),
+url("./flaticon.woff2?447d2d1ab22c54b30a3938b9f18b7a79") format("woff2"),
+url("./flaticon.eot?447d2d1ab22c54b30a3938b9f18b7a79#iefix") format("embedded-opentype"),
+url("./flaticon.svg?447d2d1ab22c54b30a3938b9f18b7a79#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "no-phone": "\f101",
+    "knowledge": "\f102",
+    "progress-report": "\f103",
+    "goal": "\f104",
+    "globe-on-hand": "\f105",
+    "resting": "\f106",
+    "routine": "\f107",
+    "analytics": "\f108",
+    "working-at-home": "\f109",
+);
+
+.flaticon-no-phone:before {
+    content: map-get($flaticon-map, "no-phone");
+}
+.flaticon-knowledge:before {
+    content: map-get($flaticon-map, "knowledge");
+}
+.flaticon-progress-report:before {
+    content: map-get($flaticon-map, "progress-report");
+}
+.flaticon-goal:before {
+    content: map-get($flaticon-map, "goal");
+}
+.flaticon-globe-on-hand:before {
+    content: map-get($flaticon-map, "globe-on-hand");
+}
+.flaticon-resting:before {
+    content: map-get($flaticon-map, "resting");
+}
+.flaticon-routine:before {
+    content: map-get($flaticon-map, "routine");
+}
+.flaticon-analytics:before {
+    content: map-get($flaticon-map, "analytics");
+}
+.flaticon-working-at-home:before {
+    content: map-get($flaticon-map, "working-at-home");
+}
