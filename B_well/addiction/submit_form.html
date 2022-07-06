@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        background: #ffeae1;
+        font-size: 12px;
+      }
+
+      body,
+      button,
+      input {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+      }
+
+      .background {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .container {
+        flex: 0 1 700px;
+        margin: auto;
+        padding: 10px;
+      }
+
+      .screen {
+        position: relative;
+        background: white;
+        border-radius: 15px;
+      }
+
+      .screen:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 20px;
+        right: 20px;
+        bottom: 0;
+        border-radius: 15px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        z-index: -1;
+      }
+
+      .screen-header {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: #ffeae1;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+      }
+
+      .screen-header-left {
+        margin-right: auto;
+      }
+
+      .screen-header-button {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin-right: 3px;
+        border-radius: 8px;
+        background: white;
+      }
+
+      .screen-header-button.close {
+        background:#EB3656;
+      }
+
+      .screen-header-button.maximize {
+        background: #e8e925;
+      }
+
+      .screen-header-button.minimize {
+        background: #74c54f;
+      }
+
+      .screen-header-right {
+        display: flex;
+      }
+
+      .screen-header-ellipsis {
+        width: 3px;
+        height: 3px;
+        margin-left: 2px;
+        border-radius: 8px;
+        background: #ffeae1;
+      }
+
+      .screen-body {
+        display: flex;
+      }
+
+      .screen-body-item {
+        flex: 1;
+        padding: 50px;
+      }
+
+      .screen-body-item.left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .app-title {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        color: #EB3656;
+        font-size: 26px;
+      }
+
+      /* .app-title:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 25px;
+        height: 4px;
+        background: #EB3656;
+      } */
+
+      .app-contact {
+        margin-top: auto;
+        font-size: 8px;
+        color: #888;
+      }
+
+      .app-form-group {
+        margin-bottom: 15px;
+      }
+
+      .app-form-group.message {
+        margin-top: 40px;
+      }
+
+      .app-form-group.buttons {
+        margin-bottom: 0;
+        text-align: right;
+      }
+
+      .app-form-control {
+        width: 100%;
+        padding: 10px 0;
+        background: none;
+        border: none;
+        border-bottom: 1px solid #666;
+        color:black;
+        font-size: 14px;
+        /* text-transform: uppercase; */
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .app-form-control::placeholder {
+        color: #EB3656;
+      }
+
+      .app-form-control:focus {
+        border-bottom-color: black;
+      }
+
+      .app-form-button {
+        background: none;
+        border: none;
+        color: #EB3656;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .app-form-button a{
+        background: none;
+        border: none;
+        color: #EB3656;
+        font-size: 14px;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;;
+      }
+
+      .app-form-button:hover {
+        color: black;
+      }
+
+      .app-form-button a:hover{
+        color: black;
+      }
+
+      
+
+      .dribbble {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+      }
+
+      @media screen and (max-width: 520px) {
+        .screen-body {
+          flex-direction: column;
+        }
+
+        .screen-body-item.left {
+          margin-bottom: 30px;
+        }
+
+        .app-title {
+          flex-direction: row;
+        }
+
+        .app-title span {
+          margin-right: 12px;
+        }
+
+        .app-title:after {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .screen-body {
+          padding: 40px;
+        }
+
+        .screen-body-item {
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <div class="container">
+        <div class="screen">
+          <div class="screen-header">
+            <div class="screen-header-left">
+              <div class="screen-header-button close"></div>
+              <div class="screen-header-button maximize"></div>
+              <div class="screen-header-button minimize"></div>
+            </div>
+            <div class="screen-header-right">
+              <div class="screen-header-ellipsis"></div>
+              <div class="screen-header-ellipsis"></div>
+              <div class="screen-header-ellipsis"></div>
+            </div>
+          </div>
+          <div class="screen-body">
+            <div class="screen-body-item left">
+              <div class="app-title">
+                <span style="font-weight: 800 !important; font-size: 30px;">B-WELL</span>
+             <br>
+                <span style="font-weight: 400 !important; font-family: 'Lobster', cursive; font-size: 30px;" >Got your result?
+                  We'd love to help you.</span>
+              </div>
+              
+            </div>
+            <div class="screen-body-item">
+              <div class="app-form">
+                <div class="app-form-group">
+                  <input class="app-form-control" placeholder="NAME" id="name" name="name" />
+                </div>
+                <div class="app-form-group">
+                  <input class="app-form-control" placeholder="EMAIL" id="email" name="email" required/>
+                </div>
+                <div class="app-form-group">
+                  <input class="app-form-control" placeholder="CONTACT NO" id="contact_no" name="contact_no" />
+                </div>
+                <div class="app-form-group ">
+                  <input class="app-form-control" placeholder="AGE" id="age" name="age"/>
+                </div>
+
+                <div class="app-form-group message">
+                  <input class="app-form-control" placeholder="YOUR MESSAGE" id="message" name="message"/>
+                </div>
+                <div class="app-form-group buttons">
+                  <button class="app-form-button"> <a href="/index.html"> CANCEL</a></button>
+                  <button class="app-form-button" id="subbutton">SEND</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBcPXrWIudJEa97nTKpMj7e8B6b8elbIPc",
+    authDomain: "final-form-project.firebaseapp.com",
+    projectId: "final-form-project",
+    storageBucket: "final-form-project.appspot.com",
+    messagingSenderId: "1014074046653",
+    appId: "1:1014074046653:web:e09fdc22c591e18573dfd4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+       const db = firebase.firestore();
+       const writeData = async (e) => {
+           e.preventDefault();
+          
+           let name = document.getElementById("name").value;
+           let email = document.getElementById("email").value;
+           let contact_no = document.getElementById("contact_no").value;
+           let age = document.getElementById("age").value;
+           let message = document.getElementById("message").value;
+          
+           db.collection("User").add({
+               name,
+               email,
+               contact_no,
+               age,
+               message,
+               created: firebase.firestore.Timestamp.now()
+           }).then((docu)=>window.location.href="").catch((e)=>{
+               console.log(e)
+           });
+          
+ 
+       }
+ 
+       const loginbutton = document.getElementById('subbutton');
+ 
+       loginbutton.addEventListener('click', writeData)
+ 
+</script>
+  </body>
+</html>
